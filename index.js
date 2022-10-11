@@ -14,6 +14,7 @@ app.use(morgan('tiny'));
 const puerto = 4000;
 
 app.use(require('./src/routes/tareas.routes'));
+app.use(require('./src/routes/usuarios.routes'));
 
 
 app.listen(puerto, ()=>{
