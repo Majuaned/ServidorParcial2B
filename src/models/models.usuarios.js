@@ -1,20 +1,22 @@
 //se requiere del mongoose el esquema-...
 const { model, Schema }=require('mongoose');
-require('./models.usuarios')
 
-const tareasSchema = new Schema({
-    persona_encargada:{
-        type: Schema.ObjectId,
-        ref:'ListaUsuarios',
-        required: true
-    },
-    descripcion:{
+const usuariosSchema = new Schema({
+    nombreUsuario:{
         type: String,
         required: true
     },
-    estado:{
+    password:{
         type: String,
         required: true
+    },
+    email:{
+        type: String,
+        required: true
+    },
+    isAdmin:{
+        type: Boolean,
+        default: false
     },
     activa:{
         type: Boolean,
@@ -22,4 +24,4 @@ const tareasSchema = new Schema({
     }
 })
 
-module.exports= model('ListaTareas', tareasSchema); //el nombre de la colección será ListaTareas
+module.exports= model('ListaUsuarios', usuariosSchema); //el nombre de la colección será ListaUsuarios.
