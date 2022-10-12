@@ -29,5 +29,16 @@ ctrlTareas.postTareas = async (req,res)=>{
         tareabd
     })
 }
+
+ctrlTareas.putTareas = async (req,res)=>{
+    
+    const id = req.params.id;
+    const {persona_encargada,descripcion,estado}=req.body;
+
+    const tareaUpdate = await ColeccionTareas.findByIdAndUpdate(id,{persona_encargada,descripcion,estado});
+    console.log(tareaUpdate);
+
+    return res.json(await ColeccionTareas.find({"_id":id}));
+}
 module.exports = ctrlTareas;
 

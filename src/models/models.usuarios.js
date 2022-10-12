@@ -18,7 +18,7 @@ const usuariosSchema = new Schema({
         type: Boolean,
         default: false
     },
-    activa:{
+    activo:{
         type: Boolean,
         default: true
     }
