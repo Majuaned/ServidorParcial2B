@@ -22,6 +22,9 @@ const usuariosSchema = new Schema({
         type: Boolean,
         default: true
     }
+},{
+    versionKey:false,
+    timestamps:true
 })
 
 module.exports= model('ListaUsuarios', usuariosSchema); //el nombre de la colección será ListaUsuarios.

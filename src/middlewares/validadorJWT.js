@@ -1,4 +1,4 @@
-const modelUsua = require('../models.usuarios');
+const modelUsua = require('../models/models.usuarios');
 const jwt = require('jsonwebtoken');
 
 const validarJWT = async (req, res, next) => {
@@ -9,17 +9,18 @@ const validarJWT = async (req, res, next) => {
     }
 
     try {
-        const {idUsertk} = await jwt.verify(token, process.env.SECRET);
-        const usuariotk = await modelUsua.findByid(idUsertk);
+        const {userID} = await jwt.verify(token, process.env.SECRET);
+        const usuariotk = await modelUsua.findById(userID);
 
         if(!usuariotk){
             return res.json('Token no válido')
         }
+        //linea más importante
+        req.user = usuariotk;
 
-        req.user = Usuario;
         next();
     } catch (error) {
-        res.json("Error con el token")
+        res.json({message:"Error con el token",error:error.message})
     }
 }
 

@@ -3,9 +3,9 @@ const { model, Schema }=require('mongoose');
 require('./models.usuarios')
 
 const tareasSchema = new Schema({
-    persona_encargada:{
-        type: Schema.ObjectId,
-        ref:'ListaUsuarios',
+    encargado:{
+        type: String,
+        max:60,
         required: true
     },
     descripcion:{
@@ -19,7 +19,15 @@ const tareasSchema = new Schema({
     activa:{
         type: Boolean,
         default: true
+    },
+    idUser:{
+        type:Schema.ObjectId,
+        ref:'ListaUsuarios',
+        required:true
     }
+},{
+    versionKey:false,
+    timestamps:true
 })
 
 module.exports= model('ListaTareas', tareasSchema); //el nombre de la colección será ListaTareas

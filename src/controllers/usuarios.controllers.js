@@ -4,6 +4,7 @@
 //se requiere el modelo de tareas de la carpeta de modelos, el cual ya debe estar hecho....y se la guarda en una variable 
 
 const ColeccionUsuarios = require('../models/models.usuarios');
+const bcrypt = require('bcrypt')
 
 ctrlUsuarios = {};
 
@@ -17,14 +18,15 @@ ctrlUsuarios.postUsuarios = async (req,res)=>{
            password,
            email}=req.body;
     //instanciado...
+    const newpassword = bcrypt.hashSync(password, 10)
     const newUsuario = new ColeccionUsuarios({
         nombreUsuario,
-        password,
+        password:newpassword,
         email
     })
     const usuariobd = await newUsuario.save();
     return res.json({
-        message:'Usuario cargada a la base de datos',
+        message:'Usuario cargado a la base de datos',
         usuariobd
     })
 }

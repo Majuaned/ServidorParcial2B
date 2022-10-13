@@ -2,9 +2,9 @@
 
 const jwt = require('jsonwebtoken');
 
-const generadorJWT = (ID)=>{
+const generadorJWT = (USER)=>{
     return new Promise((resolve,reject) => {
-        jwt.sign(ID, process.env.SECRET,{expiresIn:'10h'}, (err,token)=>{
+        jwt.sign({userID:USER['_id']}, process.env.SECRET,{expiresIn:'10h'}, (err,token)=>{
             if(err){
                 reject('Error al generar el token')
             }
